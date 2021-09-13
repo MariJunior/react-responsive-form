@@ -4,21 +4,21 @@ export const dropdownItems: DropdownItemProps[] = [
   {
     id: 'language-ru',
     title: 'Русский',
-    key: 'russian'
+    value: 'russian'
   },
   {
     id: 'language-en',
     title: 'Английский',
-    key: 'english'
+    value: 'english'
   },
   {
     id: 'language-chn',
     title: 'Китайский',
-    key: 'chinese'
+    value: 'chinese'
   },
   {
     id: 'language-sp',
     title: 'Испанский',
-    key: 'spanish'
+    value: 'spanish'
   }
 ];

@@ -34,22 +34,23 @@ a {
 }
 
 :root {
-  --colors-darkgray: #2C2738;
-  --colors-gray: #756F86;
-  --colors-bluegray: #DBE2EA;
+  --colors-darkgray:      #2C2738;
+  --colors-gray:          #756F86;
+  --colors-bluegray:      #DBE2EA;
   --colors-lightbluegray: #EBF4F8;
-  --colors-bluegray: #7C9CBF;
+  --colors-bluegray:      #7C9CBF;
   --colors-brilliantblue: #0880AE;
-  --colors-white: #FFFFFF;
+  --colors-white:         #FFFFFF;
 
-  --colors-red: #FF7171;
+  --colors-red:           #FF7171;
 
-  --shadow-sm: 0px 2px 4px rgba(44, 39, 56, 0.08);
-  --shadow-sm-light: 0px 2px 4px rgba(44, 39, 56, 0.0001);
-  --shadow-rg: 0px 4px 8px rgba(44, 39, 56, 0.08);
-  --shadow-rg-light: 0px 4px 8px rgba(44, 39, 56, 0.04);
-  --shadow-md: 0px 12px 24px rgba(44, 39, 56, 0.08);
-  --shadow-lg: 0px 24px 48px rgba(44, 39, 56, 0.16);
+  --shadow-sm:              0 2px 4px rgba(44, 39, 56, 0.08);
+  --shadow-sm-light:        0 2px 4px rgba(44, 39, 56, 0.0001);
+  --shadow-rg:              0 4px 8px rgba(44, 39, 56, 0.08);
+  --shadow-rg-light:        0 4px 8px rgba(44, 39, 56, 0.04);
+  --shadow-md:              0 12px 24px rgba(44, 39, 56, 0.08);
+  --shadow-lg:              0 24px 48px rgba(44, 39, 56, 0.16);
+  --shadow-ml:              0 20px 20px rgba(44, 39, 56, 0.04);
 
-  --transition-basic: 0.3s linear;
+  --transition-basic:       0.3s linear;
 }

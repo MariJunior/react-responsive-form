@@ -5,7 +5,6 @@ export interface TextFieldProps extends React.DetailedHTMLProps<React.HTMLAttrib
   label: string,
   name: string,
   placeholder: string,
-  value: string,
   pattern?: string,
   disabled?: boolean,
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
@@ -18,7 +17,6 @@ export function TextField({
   label,
   name,
   placeholder,
-  value,
   pattern,
   disabled,
   handleChange,
@@ -35,7 +33,6 @@ export function TextField({
         name={name}
         placeholder={placeholder}
         pattern={pattern}
-        value={value}
         disabled={disabled}
         onChange={handleChange}
       />
