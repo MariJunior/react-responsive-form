@@ -13,6 +13,7 @@ export default {
 const DropdownStory: Story<DropdownProps> = (props: DropdownProps) => (
   <Dropdown
     label={text('Label value', 'Язык')}
+    name='test-dropdown-lang'
     placeholder={text('Placeholder value', '')}
     items={dropdownItems}
   />

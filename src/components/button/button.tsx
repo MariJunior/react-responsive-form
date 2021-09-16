@@ -1,9 +1,11 @@
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
+export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  children: React.ReactNode
+}
 
-export function Button({ children, ...props }: React.PropsWithChildren<ButtonProps>) {
+export function Button({ children, ...props }: ButtonProps) {
   return (
     <Wrapper {...props}>
       {children}
@@ -35,8 +37,8 @@ const Wrapper = styled.button<ButtonProps>`
   }
 
   &:disabled {
-    background-color: var(--colors-bluegray);
-    border-color: var(--colors-bluegray);
+    background-color: var(--colors-lightgray);
+    border-color: var(--colors-lightgray);
     box-shadow: var(--shadow-rg);
     color: rgba(44, 39, 56, 0.5);
   }

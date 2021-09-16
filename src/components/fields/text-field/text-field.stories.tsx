@@ -15,7 +15,6 @@ const TextFieldStory: Story<TextFieldProps> = (props: TextFieldProps) => (
     label={text('Label text', 'Label')}
     name='test-input'
     placeholder={text('Placeholder text', 'Placeholder')}
-    pattern={text('Pattern exp', '')}
     handleChange={() => {}}
     isValid={boolean('Is field data valid?', true)}
     errorMessage={text('Error message', 'Введено некорректное значение')}

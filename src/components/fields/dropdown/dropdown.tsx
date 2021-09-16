@@ -8,11 +8,12 @@ import { DropdownItemProps } from './types';
 
 export interface DropdownProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label: string,
+  name: string,
   placeholder?: string,
   items: DropdownItemProps[]
 }
 
-export function Dropdown({ label, placeholder, items, ...props }: DropdownProps) {
+export function Dropdown({ label, name, placeholder, items, ...props }: DropdownProps) {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [dropdownTitle, setDropdownTitle] = useState<string>(placeholder && placeholder.length > 0 ? placeholder : label);
   const [selectedValue, setSelectedValue] = useState<string>('');
@@ -45,6 +46,7 @@ export function Dropdown({ label, placeholder, items, ...props }: DropdownProps)
         <DropdownHeader
           type='button'
           onClick={toggleList}
+          name={name}
           value={selectedValue}
           opened={isListOpen}
         >
@@ -76,7 +78,9 @@ interface DropdownElementsBaseProps {
   opened?: boolean,
 };
 
-const DropdownContainer = styled.div``;
+const DropdownContainer = styled.div`
+  position: relative;
+`;
 
 const DropdownHeader = styled.button<DropdownElementsBaseProps>`
   display: flex;
@@ -121,6 +125,8 @@ const DropdownHeader = styled.button<DropdownElementsBaseProps>`
 `;
 
 const DropdownList = styled.div`
+  position: sticky;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   margin-top: 5px;
@@ -130,8 +136,6 @@ const DropdownList = styled.div`
   background-color: var(--colors-white);
   box-shadow: var(--shadow-rg-light), var(--shadow-ml);
 `;
-
-
 
 const DropdownListItem = styled.button`
   padding: 12px 15px;

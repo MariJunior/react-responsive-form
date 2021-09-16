@@ -3,18 +3,42 @@ import styled from '@emotion/styled';
 
 export interface CheckboxProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLLabelElement>, HTMLLabelElement> {
   name: string,
+  children: React.ReactNode,
+  required?: boolean,
+  errorMessage?: string,
 }
 
-export function Checkbox({ name, children, ...props }: React.PropsWithChildren<CheckboxProps>) {
+export function Checkbox({
+  name,
+  children,
+  required,
+  errorMessage,
+  ...props
+}: CheckboxProps) {
   return (
-    <>
-      <Field type='checkbox' id={name} name={name} />
+    <Wrapper>
+      <Field
+        type='checkbox'
+        id={name}
+        name={name}
+        required={required}
+      />
       <label htmlFor={name} {...props}>
         {children}
       </label>
-    </>
+      {errorMessage && (
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+      )}
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  display: grid;
+  grid-row-gap: 7px;
+  padding-bottom: 26px;
+`;
 
 const Field = styled.input`
   position: absolute;
@@ -63,4 +87,15 @@ const Field = styled.input`
     background-repeat: no-repeat;
     background-position: center center;
   }
+`;
+
+const ErrorMessage = styled.span`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: var(--colors-red);
 `;

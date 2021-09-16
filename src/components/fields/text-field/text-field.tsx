@@ -5,8 +5,6 @@ export interface TextFieldProps extends React.DetailedHTMLProps<React.HTMLAttrib
   label: string,
   name: string,
   placeholder: string,
-  pattern?: string,
-  disabled?: boolean,
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   isValid?: boolean,
   errorMessage?: string,
@@ -17,8 +15,6 @@ export function TextField({
   label,
   name,
   placeholder,
-  pattern,
-  disabled,
   handleChange,
   isValid,
   errorMessage,
@@ -32,8 +28,6 @@ export function TextField({
         id={name}
         name={name}
         placeholder={placeholder}
-        pattern={pattern}
-        disabled={disabled}
         onChange={handleChange}
       />
       {errorMessage && !isValid && (
@@ -44,8 +38,10 @@ export function TextField({
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: grid;
   grid-row-gap: 7px;
+  padding-bottom: 26px;
 `;
 
 const Label = styled.label`
@@ -76,6 +72,9 @@ const Field = styled.input`
 `;
 
 const ErrorMessage = styled.span`
+  position: absolute;
+  bottom: 0;
+  left: 0;
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
