@@ -22,7 +22,6 @@ export function useForm(formObj: {[index: string]:any}) {
       const { name, value } = event.target;
       const inputObj: {[index: string]:any} = { ...form[name] };
       inputObj.value = value;
-
       const isValidInput = isInputFieldValid(inputObj);
       if (isValidInput && !inputObj.valid) {
         inputObj.valid = true;

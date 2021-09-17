@@ -26,25 +26,25 @@ function createFormTextFieldConfig(label: string, name: string, type: 'text' | '
 }
 
 export const signupForm = {
-    name: {
-      ...createFormTextFieldConfig('Имя', 'user-name', 'text', 'Введите Ваше имя'),
+    user_name: {
+      ...createFormTextFieldConfig('Имя', 'user_name', 'text', 'Введите Ваше имя'),
       validationRules: [
-        requiredRule('user-name'),
-        namePatternRule('user-name')
+        requiredRule('Имя'),
+        namePatternRule()
       ]
     },
-    email: {
-      ...createFormTextFieldConfig('Еmail', 'user-email', 'email', 'Введите ваш email'),
+    user_email: {
+      ...createFormTextFieldConfig('Еmail', 'user_email', 'email', 'Введите ваш email'),
       validationRules: [
-        requiredRule('user-email'),
-        emailPetternRule('user-email')
+        requiredRule('Еmail'),
+        emailPetternRule()
       ]
     },
-    tel: {
-      ...createFormTextFieldConfig('Номер телефона', 'user-tel', 'tel', 'Введите номер телефона'),
+    user_tel: {
+      ...createFormTextFieldConfig('Номер телефона', 'user_tel', 'tel', 'Введите номер телефона'),
       validationRules: [
-        requiredRule('user-tel'),
-        telPetternRule('user-tel')
+        requiredRule('Номер телефона'),
+        telPetternRule()
       ]
     }
 };

@@ -28,7 +28,6 @@ export function SignupForm () {
         <FormCheckbox
           name='user-agreement'
           required
-          errorMessage='Заполните поле'
         >
           <span>Принимаю <a href="#">условия</a> использования</span>
         </FormCheckbox>

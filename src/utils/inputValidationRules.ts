@@ -11,24 +11,24 @@ const errorMessageDefault = 'Введено некорректное значе�
 export function requiredRule(inputName: string) {
   return createValidationRule(
     'required',
-    `Поле ${inputName} обязательно для заполнения`,
+    `Поле "${inputName}" обязательно для заполнения`,
     (inputValue: string, formObj: object) => inputValue.length !== 0
   );
 }
 
-export function namePatternRule(inputName: string) {
+export function namePatternRule() {
   return createValidationRule(
     'namePattern',
     errorMessageDefault,
     (inputValue: string, formObj: object) => {
-      const patternNameEngRu = /(([A-Z])[a-z]+((\s|\-)([A-Z])[a-z]+){0,2})|(([А-Я])[а-я]+((\s|\-)([А-Я])[а-я]+){0,2})/;
+      const patternNameEngRu = /(^([A-Z])[a-z]+((\s|\-)([A-Z])[a-z]+){0,3}$)|(^([А-Я])[а-я]+((\s|\-)([А-Я])[а-я]+){0,3}$)/;
       patternNameEngRu.lastIndex = 0;
       return patternNameEngRu.test(inputValue);
     }
   )
 }
 
-export function emailPetternRule(inputName: string) {
+export function emailPetternRule() {
   return createValidationRule(
     'emailPattern',
     errorMessageDefault,
@@ -40,12 +40,12 @@ export function emailPetternRule(inputName: string) {
   )
 }
 
-export function telPetternRule(inputName: string) {
+export function telPetternRule() {
   return createValidationRule(
     'telPattern',
     errorMessageDefault,
     (inputValue: string, formObj: object) => {
-      const patternTel = /(\+)?(\d{1,4})?-?(\()?(\d{1,3})?(\))?-?\d{1,4}-?\d{1,4}-?\d{1,9}/;
+      const patternTel = /^(\+)?(\d{1,4})?(\-)?(\()?(\d{1,3})?(\))?(\-)?\d{1,4}(\-)?\d{1,4}(\-)?\d{1,9}$/;
       patternTel.lastIndex = 0;
       return patternTel.test(inputValue);
     }

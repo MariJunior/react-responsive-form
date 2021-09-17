@@ -12,7 +12,7 @@ export default {
 const CheckboxStory: Story<CheckboxProps> = (props: CheckboxProps) => (
   <Checkbox
     name='test-chechbox'
-    required={boolean('Is field data valid?', true)}
+    required={boolean('Is field required?', true)}
     errorMessage={text('Error message', 'Заполните поле')}
   >
     <span>Принимаю <a href="#">условия</a> использования</span>

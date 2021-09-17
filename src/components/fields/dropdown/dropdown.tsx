@@ -9,11 +9,21 @@ import { DropdownItemProps } from './types';
 export interface DropdownProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label: string,
   name: string,
+  items: DropdownItemProps[],
   placeholder?: string,
-  items: DropdownItemProps[]
+  isValid?: string,
+  errorMessage?: string
 }
 
-export function Dropdown({ label, name, placeholder, items, ...props }: DropdownProps) {
+export function Dropdown({
+  label,
+  name,
+  placeholder,
+  items,
+  isValid,
+  errorMessage = 'Заполните поле',
+  ...props
+}: DropdownProps) {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [dropdownTitle, setDropdownTitle] = useState<string>(placeholder && placeholder.length > 0 ? placeholder : label);
   const [selectedValue, setSelectedValue] = useState<string>('');
@@ -58,13 +68,18 @@ export function Dropdown({ label, name, placeholder, items, ...props }: Dropdown
             </DropdownList>
           )}
       </DropdownContainer>
+      {errorMessage && !isValid && (
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+      )}
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: grid;
   grid-row-gap: 7px;
+  padding-bottom: 26px;
 `;
 
 const DropdownLabel = styled.span`
@@ -151,4 +166,15 @@ const DropdownListItem = styled.button`
   &:hover {
     background-color: var(--colors-lightbluegray);
   }
+`;
+
+const ErrorMessage = styled.span`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: var(--colors-red);
 `;

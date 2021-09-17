@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
 import { Dropdown, DropdownProps } from './dropdown';
 import { dropdownItems } from './data';
@@ -14,8 +14,8 @@ const DropdownStory: Story<DropdownProps> = (props: DropdownProps) => (
   <Dropdown
     label={text('Label value', 'Язык')}
     name='test-dropdown-lang'
-    placeholder={text('Placeholder value', '')}
     items={dropdownItems}
+    isValid={boolean('Is field valid?', true)}
   />
 );
 
