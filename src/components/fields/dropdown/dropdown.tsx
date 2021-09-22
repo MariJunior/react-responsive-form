@@ -13,7 +13,7 @@ export interface DropdownProps extends React.DetailedHTMLProps<React.HTMLAttribu
   items: DropdownItemProps[],
   placeholder?: string,
   handleClick: (e: React.MouseEvent<HTMLElement>) => void,
-  isValid?: string,
+  isValid?: boolean,
   errorMessage?: string
 }
 

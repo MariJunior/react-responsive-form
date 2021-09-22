@@ -86,23 +86,25 @@ export function useForm(formObj: {[index: string]:any}) {
   const onDropdownClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       const name = event.currentTarget.dataset.name;
-      const inputObj: { [index: string]:any } = { ...form[name] };
-      const value = event.target.value;
+      if (!!name) {
+        const inputObj: { [index: string]:any } = { ...form[name] };
+        const value = (<HTMLButtonElement>event.target).value;
 
-      inputObj.value = value;
-      inputObj.touched ++;
+        inputObj.value = value;
+        inputObj.touched ++;
 
-      if (inputObj.touched >= 2) {
-        const isValidDropdown = isDropdownValid(inputObj);
+        if (inputObj.touched >= 2) {
+          const isValidDropdown = isDropdownValid(inputObj);
 
-        if (isValidDropdown && !inputObj.valid) {
-          inputObj.valid = true;
-        } else if (!isValidDropdown && inputObj.valid) {
-          inputObj.valid = false;
+          if (isValidDropdown && !inputObj.valid) {
+            inputObj.valid = true;
+          } else if (!isValidDropdown && inputObj.valid) {
+            inputObj.valid = false;
+          }
         }
-      }
 
-      setForm({ ...form, [name]: inputObj });
+        setForm({ ...form, [name]: inputObj });
+      }
     },
     [form, isDropdownValid]
   );
