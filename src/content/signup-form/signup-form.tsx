@@ -20,17 +20,6 @@ export function SignupForm () {
       </FormSigninTip>
       <FormWrap>
         {renderFormInputs()}
-        <FormDropdown
-          label='Язык'
-          name='user-lang'
-          items={dropdownItems}
-        />
-        <FormCheckbox
-          name='user-agreement'
-          required
-        >
-          <span>Принимаю <a href="#">условия</a> использования</span>
-        </FormCheckbox>
       </FormWrap>
       <FormButton type='submit' disabled={!isFormValid()}>Зарегистрироваться</FormButton>
     </Form>
@@ -70,12 +59,6 @@ const FormWrap = styled.div`
   grid-row-gap: 10px;
   margin-bottom: 40px;
 `;
-
-const FormDropdown = styled(Dropdown)`
-  margin-bottom: 20px;
-`;
-
-const FormCheckbox = styled(Checkbox)``;
 
 const FormButton = styled(Button)`
   width: 100%;

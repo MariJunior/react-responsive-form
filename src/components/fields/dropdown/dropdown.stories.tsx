@@ -14,7 +14,9 @@ const DropdownStory: Story<DropdownProps> = (props: DropdownProps) => (
   <Dropdown
     label={text('Label value', 'Язык')}
     name='test-dropdown-lang'
+    buttonName='test-dropdown-lang-btn'
     items={dropdownItems}
+    handleClick={() => {}}
     isValid={boolean('Is field valid?', true)}
   />
 );

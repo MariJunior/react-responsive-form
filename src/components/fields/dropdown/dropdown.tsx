@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -9,8 +9,10 @@ import { DropdownItemProps } from './types';
 export interface DropdownProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   label: string,
   name: string,
+  buttonName: string,
   items: DropdownItemProps[],
   placeholder?: string,
+  handleClick: (e: React.MouseEvent<HTMLElement>) => void,
   isValid?: string,
   errorMessage?: string
 }
@@ -18,17 +20,19 @@ export interface DropdownProps extends React.DetailedHTMLProps<React.HTMLAttribu
 export function Dropdown({
   label,
   name,
+  buttonName,
   placeholder,
   items,
+  handleClick,
   isValid,
-  errorMessage = 'Заполните поле',
+  errorMessage = 'Выберите одно из значений списка',
   ...props
 }: DropdownProps) {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [dropdownTitle, setDropdownTitle] = useState<string>(placeholder && placeholder.length > 0 ? placeholder : label);
   const [selectedValue, setSelectedValue] = useState<string>('');
 
-  const toggleList = () => setIsListOpen(!isListOpen);
+  const onDropdownClick = () => setIsListOpen(!isListOpen);
 
   const selectItem = (item: DropdownItemProps) => () => {
     setDropdownTitle(item.title);
@@ -52,21 +56,24 @@ export function Dropdown({
   return (
     <Wrapper {...props}>
       <DropdownLabel>{label}</DropdownLabel>
-      <DropdownContainer>
+      <DropdownContainer
+        data-name={name}
+        onClick={handleClick}
+      >
         <DropdownHeader
           type='button'
-          onClick={toggleList}
-          name={name}
+          onClick={onDropdownClick}
+          name={buttonName}
           value={selectedValue}
           opened={isListOpen}
         >
           {dropdownTitle}
         </DropdownHeader>
-          {isListOpen && (
-            <DropdownList>
-              {renderDropdownList()}
-            </DropdownList>
-          )}
+        {isListOpen && (
+          <DropdownList>
+            {renderDropdownList()}
+          </DropdownList>
+        )}
       </DropdownContainer>
       {errorMessage && !isValid && (
         <ErrorMessage>{errorMessage}</ErrorMessage>

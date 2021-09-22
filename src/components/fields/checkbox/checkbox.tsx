@@ -1,47 +1,39 @@
-import { useState } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 export interface CheckboxProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   name: string,
   children: React.ReactNode,
-  required?: boolean,
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  isValid?: boolean,
+  isChecked?: boolean,
   errorMessage?: string,
-  checkedDefault?: boolean,
 }
 
 export function Checkbox({
   name,
   children,
-  required,
-  errorMessage = 'Заполните поле',
-  checkedDefault = false,
+  handleChange,
+  isValid,
+  isChecked,
+  errorMessage,
   ...props
 }: CheckboxProps) {
-  const [isTouched, setIsTouched] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState<boolean>(checkedDefault);
-
-  const validateCheckbox = () => {
-    setIsTouched(true);
-    setIsChecked(!isChecked);
-  };
-
   return (
     <Wrapper {...props}>
       <Field
         type='checkbox'
         id={name}
         name={name}
-        required={required}
-        checked={isChecked}
-        onChange={validateCheckbox}
+        checked={!!isChecked}
+        onChange={handleChange}
       />
       <label
         htmlFor={name}
       >
         {children}
       </label>
-      {required && isTouched && !isChecked && (
+      {errorMessage && !isValid && (
         <ErrorMessage>{errorMessage}</ErrorMessage>
       )}
     </Wrapper>

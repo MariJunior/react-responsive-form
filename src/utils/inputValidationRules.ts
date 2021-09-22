@@ -51,3 +51,19 @@ export function telPetternRule() {
     }
   )
 }
+
+export function checkboxRequiredRule() {
+  return createValidationRule(
+    'checkboxRequired',
+    'Заполните поле',
+    (fieldChecked: boolean, formObj: object) => fieldChecked
+  )
+}
+
+export function dropdownRequiredRule() {
+  return createValidationRule(
+    'dropdownRequired',
+    'Выберите одно из значений списка',
+    (dropdownValue: string, formObj: object) => dropdownValue.length !== 0
+  )
+}
