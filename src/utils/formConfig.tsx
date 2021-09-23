@@ -2,19 +2,13 @@ import { TextField } from '../components/fields/text-field';
 import { Checkbox } from '../components/fields/checkbox';
 import { Dropdown } from '../components/fields/dropdown';
 import { DropdownItemProps } from '../components/fields/dropdown/types';
-import { dropdownItems } from '../components/fields/dropdown/data';
-
 import {
-  requiredRule,
-  namePatternRule,
-  emailPetternRule,
-  telPetternRule,
-  checkboxRequiredRule,
-  dropdownRequiredRule
-} from './inputValidationRules';
-import { boolean } from '@storybook/addon-knobs';
+  CreateFormTextFieldConfigProps,
+  CreateFormCheckboxConfigProps,
+  CreateFormDropdownConfigProps
+} from '../types';
 
-function createFormTextFieldConfig(label: string, name: string, type: 'text' | 'tel' | 'email' | 'password', placeholder: string, defaultValue: string = '') {
+export function createFormTextFieldConfig(label: string, name: string, type: 'text' | 'tel' | 'email' | 'password', placeholder: string, defaultValue: string = ''): CreateFormTextFieldConfigProps {
   return {
     renderTextInput: (handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void, value: string, valid: boolean, error: string, key: string|number) => (
       <TextField
@@ -37,7 +31,7 @@ function createFormTextFieldConfig(label: string, name: string, type: 'text' | '
   };
 }
 
-function createFormCheckboxConfig(label: React.ReactNode, name: string, defaultChecked: boolean = false) {
+export function createFormCheckboxConfig(label: React.ReactNode, name: string, defaultChecked: boolean = false): CreateFormCheckboxConfigProps {
   return {
     renderCheckbox: (handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void, checked: boolean, valid: boolean, error: string) => (
       <Checkbox
@@ -59,7 +53,7 @@ function createFormCheckboxConfig(label: React.ReactNode, name: string, defaultC
   }
 }
 
-function createFormDropdownConfig(label: string, name: string, buttonName: string, items: DropdownItemProps[], placeholder?: string) {
+export function createFormDropdownConfig(label: string, name: string, buttonName: string, items: DropdownItemProps[], placeholder?: string): CreateFormDropdownConfigProps {
   return {
     renderDropdown: (handleClick: (e: React.MouseEvent<HTMLElement>) => void, value: string, valid: boolean, error: string, key: string|number) => (
       <Dropdown
@@ -83,37 +77,3 @@ function createFormDropdownConfig(label: string, name: string, buttonName: strin
     touched: 0
   }
 }
-
-const checkboxLabel = <span>Принимаю <a href="#">условия</a> использования</span>;
-
-export const signupForm = {
-    user_name: {
-      ...createFormTextFieldConfig('Имя', 'user_name', 'text', 'Введите Ваше имя'),
-      validationRules: [
-        requiredRule('Имя'),
-        namePatternRule()
-      ]
-    },
-    user_email: {
-      ...createFormTextFieldConfig('Еmail', 'user_email', 'email', 'Введите ваш email'),
-      validationRules: [
-        requiredRule('Еmail'),
-        emailPetternRule()
-      ]
-    },
-    user_tel: {
-      ...createFormTextFieldConfig('Номер телефона', 'user_tel', 'tel', 'Введите номер телефона'),
-      validationRules: [
-        requiredRule('Номер телефона'),
-        telPetternRule()
-      ]
-    },
-    user_lang: {
-      ...createFormDropdownConfig('Язык', 'user_lang', 'user_lang_button', dropdownItems),
-      validationRule: dropdownRequiredRule()
-    },
-    user_agreement: {
-      ...createFormCheckboxConfig(checkboxLabel, 'user_agreement'),
-      validationRule: checkboxRequiredRule()
-    }
-};

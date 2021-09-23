@@ -1,34 +1,41 @@
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { useForm } from '../../utils/useForm';
-import { signupForm } from '../../utils/formConfig';
 
-import { Checkbox } from '../../components/fields/checkbox';
-import { Dropdown } from '../../components/fields/dropdown';
 import { Button } from '../../components/button';
-import { dropdownItems } from '../../components/fields/dropdown/data';
+import { SignupFormConfigProps } from './types';
 
-export function SignupForm () {
-  const { renderFormInputs, isFormValid } = useForm(signupForm);
+export interface SignupFormProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLFormElement>, HTMLFormElement> {
+  title: string,
+  tip?: React.ReactNode,
+  formConfigData: SignupFormConfigProps,
+  submitButtonText: string,
+}
+
+export function SignupForm ({ title, tip, formConfigData, submitButtonText, ...props }: SignupFormProps) {
+  console.log(formConfigData);
+
+  const { renderFormInputs, isFormValid } = useForm(formConfigData);
 
   return (
-    <Form>
-      <FormTitle>Регистрация</FormTitle>
-      <FormSigninTip>
-        Уже есть аккаунт? <FormSigninTipLink href='#'>Войти</FormSigninTipLink>
-      </FormSigninTip>
+    <Form {...props}>
+      <FormTitle>{title}</FormTitle>
+      {tip && (
+        <FormSigninTip>
+          {tip}
+        </FormSigninTip>
+      )}
       <FormWrap>
         {renderFormInputs()}
       </FormWrap>
-      <FormButton type='submit' disabled={!isFormValid()}>Зарегистрироваться</FormButton>
+      <FormButton type='submit' disabled={!isFormValid()}>{submitButtonText}</FormButton>
     </Form>
   );
 }
 
 const Form = styled.form`
+  width: 100%;
   max-width: 480px;
-  margin: 0 auto;
   padding: 40px 30px;
   border-radius: 24px;
   background-color: var(--colors-white);
@@ -48,10 +55,10 @@ const FormSigninTip = styled.p`
   margin-top: 0;
   margin-bottom: 55px;
   color: var(--colors-darkgray);
-`;
 
-const FormSigninTipLink = styled.a`
-  color: var(--colors-brilliantblue);
+  a {
+    color: var(--colors-brilliantblue);
+  }
 `;
 
 const FormWrap = styled.div`
